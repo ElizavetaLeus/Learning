@@ -1,0 +1,9 @@
+body {
+  background-color: var(--color-white);
+}
+
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-inline: auto;
+}
