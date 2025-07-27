@@ -1,6 +1,6 @@
 import Tag from "./tag.js";
 
-const app = document.getElementById("app");
+const app = document.getElementById("app"); // получаю эл-т по id из html
 const userListNode = new Tag({
     tagName: 'div',
     classList: [],
@@ -54,10 +54,12 @@ const user6Node = new Tag ({
     id: '8766',
 });
 
-const userList = [user1Node, user2Node, user3Node, user4Node, user5Node, user6Node];
-let inputValue = null;
+const userList = [user1Node, user2Node, user3Node, user4Node, user5Node, user6Node]; // создаю общий массив юзеров
+let inputValue = null; // задаю переменную, в которую положу значение инпута
 
-const filterUsersByName = (value) => {
+const filterUsersByName = (value) => { 
+// функция, которая проходится по св-ву userName у массива юхеров и ищет эл-т, 
+// включающий в себя заданное значение (содержимое инпута)
     const userListByName = userList.filter((obj) => obj.userName.includes(value));
     
     return userListByName;
@@ -68,8 +70,7 @@ const inputNode = new Tag ({
     classList: [ 'input' ],
     text: 'Введите id',
     onInput: (event) => {
-        inputValue = event.target.value;
-     
+        inputValue = event.target.value; // переопределяю переменную, записывая в нее значение инпута
     }
 });
 
@@ -80,16 +81,16 @@ const buttonNode =new Tag ({
     text: 'Найти',
     onClick: () => {
         renderUserList(filterUsersByName(inputValue));
-        
+        //рендерю список юзеров, чье имя включает в себя значение инпута
     },
 });
 
 
 const renderUserList = (userList) => {
-    userListNode.render().innerHTML = "";
+    userListNode.render().innerHTML = ""; //обнуляю все, что записано в переменную userListNode
     userList.forEach(user => {
         userListNode.render().append(user.render())
-    })
+    }) //рендерю все элементы массива юзеров
 };
 
 
